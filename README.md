@@ -1,5 +1,73 @@
 # ProyectoFinal
 Link de descarga del CSV - https://drive.google.com/drive/folders/1FXgSRHyGBuxQpl1SZumY4BMkiF5_t73K?usp=drive_link (120mb~)
+# Desglose del Proyecto
+
+## 1. Objetivo Principal:
+Realizar un análisis del meta del último parche de League of Legends para ayudar a un equipo de Esports a desarrollar estrategias.
+
+## 2. Ampliaciones Posibles:
+- Comparar las tendencias del meta actual con parches anteriores.
+- Incorporar análisis de impacto de campeones o roles específicos en la victoria.
+- Identificar patrones de juego en diferentes niveles de habilidad o regiones.
+- Analizar diferencias entre equipos con alto nivel de coordinación frente a equipos individuales.
+
+## 3. Tareas Desglosadas:
+
+### Etapa 1: Preparación de Datos
+- **Scraping y obtención de datos:**
+  - Usar la API de Riot para extraer datos de partidas clasificatorias de alto nivel.
+  - Limitar los datos al último parche para mantener la relevancia.
+  - Descargar datos adicionales para variables exógenas (clima en competencias, horarios de partidas, etc., si es relevante).
+
+- **Limpieza y estructura:**
+  - Evaluar calidad de los datos: valores nulos, duplicados, inconsistencias.
+  - Normalizar datos relevantes: daño por minuto, oro por minuto, etc.
+
+### Etapa 2: Análisis Exploratorio
+- **Crear gráficos y tablas para visualizar:**
+  - Frecuencia de campeones, roles y objetos.
+  - Relación entre KDA (Kills/Deaths/Assists) y victorias.
+  - Eficiencia en objetivos (torretas, dragones, etc.) y resultados de partidas.
+
+- **Realizar segmentaciones:**
+  - Por roles (jungla, mid, etc.).
+  - Por regiones si los datos están disponibles.
+
+### Etapa 3: Análisis Avanzado
+- **Series de tiempo:**
+  - Analizar cambios en la popularidad de campeones/estrategias a lo largo del parche.
+
+- **Análisis de correlación:**
+  - Evaluar qué métricas tienen mayor correlación con la victoria.
+
+- **Outliers:**
+  - Detectar jugadores, campeones o equipos con métricas anómalas (ejemplo: daño altísimo o tasas de victoria extremas).
+
+- **Análisis de Cohortes:**
+  - Crear cohortes basadas en tiempo jugado, composición de equipo, o estrategias comunes.
+
+### Etapa 4: Modelado Predictivo
+- **Clasificación:**
+  - Crear un modelo para predecir si un equipo ganará o no basado en:
+    - Selección de campeones.
+    - Composición de roles.
+    - Estadísticas acumuladas.
+
+- **Regresión:**
+  - Modelar el impacto de factores como "oro ganado por minuto" en la probabilidad de victoria.
+
+## 4. Cumplimiento de Requisitos Mínimos
+
+- **Scraping:** La API de Riot proporcionará datos base.
+- **EDA:** Gráficos como histogramas, boxplots y diagramas de dispersión ayudarán a cumplir este punto.
+- **Análisis de calidad:** Puedes identificar datos faltantes o duplicados en las partidas.
+- **Segmentación:** Dividir datos por roles, regiones o niveles de habilidad.
+- **Modelos predictivos:** Usar clasificación y regresión regularizada (ej. Ridge o Lasso).
+- **Análisis de tiempo:** Detectar cambios en las tendencias del meta a lo largo del parche.
+- **Correlaciones:** Examinar qué métricas afectan más a la victoria.
+- **Cohortes:** Segmentar por estrategias o jugadores destacados.
+- **Gráficos:** Visualizar variables como daño, roles o victorias.
+- **Outliers:** Detectar partidas con resultados extremos para análisis adicional.
 
 # Scraping de Datos de League of Legends
 
