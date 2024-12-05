@@ -145,3 +145,119 @@ El segundo paso utiliza los **PUUIDs** generados en el primer script para recopi
   ```bash
   pip install requests
 
+
+# Análisis de calidad de los datos
+## 1. Información del DataFrame
+Este DataSet contenía una cantidad gigante de información y columnas, así que hicimos un análisis para seleccionar qué iba a ser útil para nuestros objetivos.
+![image](https://github.com/user-attachments/assets/fe952d8c-bbaf-4b17-8377-d1521f06463a)
+
+A destacar:
+- Eliminación de columnas que no aportaban valores analizables(ejemplo: iconos de los jugadores)
+- Filtro de partidas por el último parche (14.23)
+- Comprobación de valores nulos (Gestionado por el scraping, se han asignado valores por defecto en valores faltantes)
+- Comprobación de duplicados:
+- 
+En este DataSet se guardan todas las partidas de los 300 mejores jugadores del servidor de Europa, estos 300 jugadores, por cómo funciona el sistema de emparejamiento del juego, la mayoría de veces se van a enfrentar entre ellos 5 vs 5, con la posibilidad de que haya alguna persona cercana a la liga de Challenger (Grand Master) en alguna de las partidas
+Debido a esto, el mismo match_id podría aparecer hasta 10 veces por cada partida, una vez por cada integrante de los dos equipos que se enfrentan. Estos duplicados son útiles a la hora de agrupar por partidas totales así que los mantenemos.
+Aquí se puede ver que de los más de 50k registros en el dataframe solo hay esta cantidad de partidas únicas:
+
+![image](https://github.com/user-attachments/assets/f8d7e985-7bbd-49bd-a1d2-2d8473d87d19)
+
+-Duración de las partidas:
+
+Al hacer una distribución de las partidas vimos unos outliers que analizar:
+![image](https://github.com/user-attachments/assets/ac840be5-9eda-43a2-a6c0-e3e37d91d2a8)
+
+Aquí se ve claramente que hay un número de partidas anómalamente cortas y largas.
+Al analizar el funcionamiento de las partidas, sabemos que a partir del minuto 15 de partida se activa la posibilidad de rendición de los equipos.
+Sin embargo, League of Legends tiene la funcionalidad de que si una persona de tu equipo se desconecta en los primeros minutos de partida se activa la posibilidad de rendición prematura.
+Por lo tanto, hemos decidido eliminar las partidas con menor duración a 15 minutos, ya que en esas partidas han sucedido cosas externas a el desarrollo normal de la misma.
+Para las partidas largas, hemos decidido tomar un valor máximo de duración (45 minutos).
+Esto es porque hemos determinado que las partidas con más relevancia para el análisis estarán entre 15 y 45 minutos.
+
+- Cambio de formato de datos
+  Las fechas de las partidas estaban en formato UNIX (milisegundos pasados desde una fecha de 1970) así que las convertimos a una fecha legible:
+  
+ ![image](https://github.com/user-attachments/assets/cc503815-5060-4596-84b6-7e6cce59c86f)
+
+  Cambio del formato de win de 0 y 1 a bool (TODO)
+
+  Cambio de nombre de team_position
+  
+  ![image](https://github.com/user-attachments/assets/22a09177-e6bb-44bf-ab9b-9d4e0fc11d83)
+  
+  La posición 'SUPPORT' estaba anotada como 'UTILITY', se normaliza para que coincida con el nombre real de la posición
+
+- Número total de filas y columnas.
+- ![image](https://github.com/user-attachments/assets/62e9728f-582f-4e3d-9dda-a495ff50844c)
+
+- Información sobre el DataFrame.  
+(![image](https://github.com/user-attachments/assets/0c30f6af-c111-424f-b9a4-d671988085e6)
+
+
+
+# Exploratory Data Analysis (EDA) - Análisis del Meta de League of Legends
+
+## Introducción
+Este análisis tiene como objetivo proporcionar información clave sobre el meta actual de League of Legends, enfocándose en datos que puedan ser útiles para un coach profesional al tomar decisiones estratégicas. 
+
+A continuación, se detallan las visualizaciones y los insights que se generaron durante la exploración de los datos.
+
+---
+
+## 1. Distribución de Campeones por Rol
+Se analizó cómo se distribuyen los campeones según los roles principales del juego (Top, Jungle, Mid, ADC, Support). Para facilitar la interpretación, se dividieron en cuatro segmentos.  
+
+**Gráfica:**  
+*(Espacio para incluir la visualización de la distribución de roles.)*
+
+**Conclusión:**  
+*(Espacio para destacar roles con mayor concentración o diversidad de campeones.)*
+
+---
+
+## 2. Distribución de Campeones por Porcentaje de Victoria
+Se exploró el porcentaje de victoria de los campeones en el meta actual, segmentando los resultados en cuatro grupos para identificar campeones consistentes y outliers.  
+
+**Gráfica:**  
+*(Espacio para incluir la visualización del porcentaje de victorias por campeones.)*
+
+**Conclusión:**  
+*(Espacio para resaltar campeones meta-dominantes y aquellos con bajo rendimiento.)*
+
+---
+
+## 3. Top 20 Campeones con Más Porcentaje de Victoria
+Se identificaron los campeones más efectivos en términos de porcentaje de victorias.  
+
+**Tabla/Gráfica:**  
+*(Espacio para incluir el ranking de los 20 campeones con mayor porcentaje de victorias.)*
+
+**Conclusión:**  
+*(Espacio para mencionar tendencias o recomendaciones basadas en este ranking.)*
+
+---
+
+## 4. Distribución de la Duración de las Partidas
+El análisis de la duración de las partidas puede ayudar a identificar si el meta actual favorece juegos largos o rápidos.  
+
+**Gráfica:**  
+*(Espacio para incluir la distribución de la duración de partidas.)*
+
+**Conclusión:**  
+*(Espacio para incluir observaciones como duración promedio y posibles implicaciones para el draft.)*
+
+---
+
+## 5. Top 10 Jugadores con Mejor KDA por Rol
+Este análisis identifica a los jugadores más consistentes en términos de KDA, segmentado por roles.  
+
+**Tabla/Gráfica:**  
+*(Espacio para incluir la visualización del Top 10 de jugadores por rol.)*
+
+**Conclusión:**  
+*(Espacio para destacar patrones o jugadores excepcionales en su rol.)*
+
+## 7. TODO: porcentaje de victorias por objetivos(primer dragon, baron, torre...) 
+
+
