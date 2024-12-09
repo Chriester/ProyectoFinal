@@ -209,7 +209,15 @@ A continuación, se detallan las visualizaciones y los insights que se generaron
 Se analizó cómo se distribuyen los campeones según los roles principales del juego (Top, Jungle, Mid, ADC, Support). Para facilitar la interpretación, se dividieron en cuatro segmentos.  
 
 **Gráfica:**  
-*(Espacio para incluir la visualización de la distribución de roles.)*
+
+![download](https://github.com/user-attachments/assets/1347222c-0781-4251-a041-7453ccda3fcc)
+
+![download](https://github.com/user-attachments/assets/a96c2704-6687-4316-a264-42bb6a606561)
+
+![download](https://github.com/user-attachments/assets/c2bc2f19-6518-4cdb-a957-e23861f41589)
+
+![download](https://github.com/user-attachments/assets/2ff2e401-c1a0-4246-8065-484cd07e603d)
+
 
 **Conclusión:**  
 *(Espacio para destacar roles con mayor concentración o diversidad de campeones.)*
@@ -220,7 +228,18 @@ Se analizó cómo se distribuyen los campeones según los roles principales del 
 Se exploró el porcentaje de victoria de los campeones en el meta actual, segmentando los resultados en cuatro grupos para identificar campeones consistentes y outliers.  
 
 **Gráfica:**  
-*(Espacio para incluir la visualización del porcentaje de victorias por campeones.)*
+![download](https://github.com/user-attachments/assets/34c175e1-8d02-4ab3-a2ae-13a21f211481)
+
+![download](https://github.com/user-attachments/assets/3ff98c89-692f-4b21-8ddc-ac114f32c1f6)
+
+![download](https://github.com/user-attachments/assets/9f760b60-40c2-4fca-b367-aa6ecd61cdf4)
+
+![download](https://github.com/user-attachments/assets/313598f0-8303-487b-ae89-fcb1a7c800cf)
+
+
+
+
+
 
 **Conclusión:**  
 *(Espacio para resaltar campeones meta-dominantes y aquellos con bajo rendimiento.)*
@@ -230,8 +249,10 @@ Se exploró el porcentaje de victoria de los campeones en el meta actual, segmen
 ## 3. Top 20 Campeones con Más Porcentaje de Victoria
 Se identificaron los campeones más efectivos en términos de porcentaje de victorias.  
 
-**Tabla/Gráfica:**  
-*(Espacio para incluir el ranking de los 20 campeones con mayor porcentaje de victorias.)*
+**Tabla:**  
+
+![image](https://github.com/user-attachments/assets/9201eae5-123d-4b9e-ae21-3368fcae5ed9)
+
 
 **Conclusión:**  
 *(Espacio para mencionar tendencias o recomendaciones basadas en este ranking.)*
@@ -242,7 +263,9 @@ Se identificaron los campeones más efectivos en términos de porcentaje de vict
 El análisis de la duración de las partidas puede ayudar a identificar si el meta actual favorece juegos largos o rápidos.  
 
 **Gráfica:**  
-*(Espacio para incluir la distribución de la duración de partidas.)*
+
+![download](https://github.com/user-attachments/assets/7d4b0099-0a00-489a-8f6a-632eac90e819)
+
 
 **Conclusión:**  
 *(Espacio para incluir observaciones como duración promedio y posibles implicaciones para el draft.)*
@@ -252,12 +275,14 @@ El análisis de la duración de las partidas puede ayudar a identificar si el me
 ## 5. Top 10 Jugadores con Mejor KDA por Rol
 Este análisis identifica a los jugadores más consistentes en términos de KDA, segmentado por roles.  
 
-**Tabla/Gráfica:**  
-*(Espacio para incluir la visualización del Top 10 de jugadores por rol.)*
+**Gráfica:**  
+
+![download](https://github.com/user-attachments/assets/61584bbe-c1fe-42b9-ab4e-ed832801c750)
+
 
 **Conclusión:**  
 *(Espacio para destacar patrones o jugadores excepcionales en su rol.)*
 
-## 7. TODO: porcentaje de victorias por objetivos(primer dragon, baron, torre...) 
+## 6. TODO: porcentaje de victorias por objetivos(primer dragon, baron, torre...) 
 
 
