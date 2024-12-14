@@ -467,6 +467,62 @@ Para conseguirlo, hemos utilizado tres modelos para compararlos y seleccionar el
   ![image](https://github.com/user-attachments/assets/66cbbbea-5b5a-49cc-b3f4-bc3d67b80fa9)
 
 
+  ## KNN
+
+  Para utilizar KNN, es necesario que todas las variables estén en un rango similar, por lo que decidimos utilizar StandardScaler para escalar las variables numéricas:
+  
+  ![image](https://github.com/user-attachments/assets/f751431e-182d-4a08-b8ba-7a062d76ff68)
+
+  Dividimos conjuntos
+
+  ![image](https://github.com/user-attachments/assets/d6edc15a-9dcb-4b01-ba19-522c0842705b)
+
+  Buscamos mejor K para CV
+
+  ![image](https://github.com/user-attachments/assets/f98bc6db-c75c-40a6-8601-1ccdd2fe0537)
+
+
+  Buscamos hiperparámetros con k 10
+
+  ![image](https://github.com/user-attachments/assets/081a4217-5b18-4b28-8003-bb5fbce76e2f)
+
+  Inicializamos modelo con mejores hiperparámetros y fitteamos
+
+  ![image](https://github.com/user-attachments/assets/9b0149ce-adb7-438f-a255-109bc0858811)
+
+  Classification report
+
+  ![image](https://github.com/user-attachments/assets/070a33b0-4e1f-4edb-a065-675b3f382b28)
+
+  
+  Matriz de confusión
+
+  ![image](https://github.com/user-attachments/assets/1da0f94f-6852-4a4f-9da2-86694a580829)
+
+  Curva de aprendizaje
+
+  ![image](https://github.com/user-attachments/assets/a1503321-4f2b-4563-8599-710ea5cce6e3)
+
+  Curva de ROC, AUC = 0.98
+
+  ![image](https://github.com/user-attachments/assets/7f47b27d-12ba-46f4-8253-5ce3c3bc72b4)
+
+  
+
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
   
 
   
