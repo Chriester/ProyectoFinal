@@ -2,12 +2,14 @@
 Link de descarga del CSV - https://drive.google.com/drive/folders/1FXgSRHyGBuxQpl1SZumY4BMkiF5_t73K?usp=drive_link (120mb~)
 # Desglose del Proyecto
 
-## 1. Objetivo Principal:
-Realizar un análisis del meta del último parche de League of Legends para ayudar a un equipo de Esports a desarrollar estrategias.
+## 1. Objetivos Principales:
+
+- Realizar un análisis del meta del último parche de League of Legends para ayudar a un equipo de Esports a desarrollar estrategias y fichar nuevas incorporaciones a su equipo.
+  
+- Ajustar modelos capaces de predecir si una partida de league of legends acabará en victoria o derrota para dar una herramienta al equipo que pueda analizar los resultados de las partidas acabadas o en curso para un mejor análisis de rendimiento
 
 ## 2. Ampliaciones Posibles:
 - Comparar las tendencias del meta actual con parches anteriores.
-- Incorporar análisis de impacto de campeones o roles específicos en la victoria.
 - Identificar patrones de juego en diferentes niveles de habilidad o regiones.
 - Analizar diferencias entre equipos con alto nivel de coordinación frente a equipos individuales.
 
@@ -17,44 +19,41 @@ Realizar un análisis del meta del último parche de League of Legends para ayud
 - **Scraping y obtención de datos:**
   - Usar la API de Riot para extraer datos de partidas clasificatorias de alto nivel.
   - Limitar los datos al último parche para mantener la relevancia.
-  - Descargar datos adicionales para variables exógenas (clima en competencias, horarios de partidas, etc., si es relevante).
 
 - **Limpieza y estructura:**
   - Evaluar calidad de los datos: valores nulos, duplicados, inconsistencias.
-  - Normalizar datos relevantes: daño por minuto, oro por minuto, etc.
 
 ### Etapa 2: Análisis Exploratorio
 - **Crear gráficos y tablas para visualizar:**
-  - Frecuencia de campeones, roles y objetos.
-  - Relación entre KDA (Kills/Deaths/Assists) y victorias.
+  - Frecuencia de campeones y roles.
+  - Estudio del KDA.
   - Eficiencia en objetivos (torretas, dragones, etc.) y resultados de partidas.
 
 - **Realizar segmentaciones:**
   - Por roles (jungla, mid, etc.).
-  - Por regiones si los datos están disponibles.
+  - Por duración de partidas
+  - Por KDA
 
 ### Etapa 3: Análisis Avanzado
 - **Series de tiempo:**
-  - Analizar cambios en la popularidad de campeones/estrategias a lo largo del parche.
+  - Analizar cambios en la popularidad de campeones a lo largo del parche.
+  - Analizar comportamiento a lo largo del parche de los jugadores con más rendimiento
 
 - **Análisis de correlación:**
   - Evaluar qué métricas tienen mayor correlación con la victoria.
 
-- **Outliers:**
-  - Detectar jugadores, campeones o equipos con métricas anómalas (ejemplo: daño altísimo o tasas de victoria extremas).
-
 - **Análisis de Cohortes:**
-  - Crear cohortes basadas en tiempo jugado, composición de equipo, o estrategias comunes.
+  - Crear cohortes de comportamiento de los jugadores con más rendimiento
+      -Tasas de retención/abandono después de la primera derrota
+      -Estudio de la elasticidad de los jugadores para ver los jugadores más consistentes después de la primera derrota
 
 ### Etapa 4: Modelado Predictivo
-- **Clasificación:**
-  - Crear un modelo para predecir si un equipo ganará o no basado en:
-    - Selección de campeones.
-    - Composición de roles.
-    - Estadísticas acumuladas.
 
-- **Regresión:**
-  - Modelar el impacto de factores como "oro ganado por minuto" en la probabilidad de victoria.
+  - Crear un modelo para predecir si un equipo ganará o no basado en:
+    - Desempeño del jugador
+    - Duración de la partida
+    - Primeros objetivos conseguidos
+
 
 ## 4. Cumplimiento de Requisitos Mínimos
 
@@ -149,14 +148,21 @@ El segundo paso utiliza los **PUUIDs** generados en el primer script para recopi
 # Análisis de calidad de los datos
 ## 1. Información del DataFrame
 Este DataSet contenía una cantidad gigante de información y columnas, así que hicimos un análisis para seleccionar qué iba a ser útil para nuestros objetivos.
-![image](https://github.com/user-attachments/assets/fe952d8c-bbaf-4b17-8377-d1521f06463a)
+
+![Imagen de WhatsApp 2024-12-14 a las 11 23 12_78acdca8](https://github.com/user-attachments/assets/412bc1cd-f53c-4401-91d1-662b0f34e0cd)
+
 
 A destacar:
 - Eliminación de columnas que no aportaban valores analizables(ejemplo: iconos de los jugadores)
 - Filtro de partidas por el último parche (14.23)
+- Filtro de partidas solo CLASSIC
+
+![image](https://github.com/user-attachments/assets/232900d2-b0a2-4472-817e-989d59a5b4ce)
+
+
 - Comprobación de valores nulos (Gestionado por el scraping, se han asignado valores por defecto en valores faltantes)
 - Comprobación de duplicados:
-- 
+  
 En este DataSet se guardan todas las partidas de los 300 mejores jugadores del servidor de Europa, estos 300 jugadores, por cómo funciona el sistema de emparejamiento del juego, la mayoría de veces se van a enfrentar entre ellos 5 vs 5, con la posibilidad de que haya alguna persona cercana a la liga de Challenger (Grand Master) en alguna de las partidas
 Debido a esto, el mismo match_id podría aparecer hasta 10 veces por cada partida, una vez por cada integrante de los dos equipos que se enfrentan. Estos duplicados son útiles a la hora de agrupar por partidas totales así que los mantenemos.
 Aquí se puede ver que de los más de 50k registros en el dataframe solo hay esta cantidad de partidas únicas:
@@ -166,6 +172,7 @@ Aquí se puede ver que de los más de 50k registros en el dataframe solo hay est
 -Duración de las partidas:
 
 Al hacer una distribución de las partidas vimos unos outliers que analizar:
+
 ![image](https://github.com/user-attachments/assets/ac840be5-9eda-43a2-a6c0-e3e37d91d2a8)
 
 Aquí se ve claramente que hay un número de partidas anómalamente cortas y largas.
@@ -176,11 +183,14 @@ Para las partidas largas, hemos decidido tomar un valor máximo de duración (45
 Esto es porque hemos determinado que las partidas con más relevancia para el análisis estarán entre 15 y 45 minutos.
 
 - Cambio de formato de datos
-  Las fechas de las partidas estaban en formato UNIX (milisegundos pasados desde una fecha de 1970) así que las convertimos a una fecha legible:
+  Las fechas de las partidas estaban en formato UNIX (milisegundos pasados desde 1970) así que las convertimos a una fecha legible:
   
  ![image](https://github.com/user-attachments/assets/cc503815-5060-4596-84b6-7e6cce59c86f)
 
-  Cambio del formato de win de 0 y 1 a bool (TODO)
+  Cambio del formato de win de 0 y 1 a bool
+
+  ![image](https://github.com/user-attachments/assets/67cfe57a-04ab-4c1e-9834-fc6a53f2fe63)
+
 
   Cambio de nombre de team_position
   
@@ -208,81 +218,136 @@ A continuación, se detallan las visualizaciones y los insights que se generaron
 ## 1. Distribución de Campeones por Rol
 Se analizó cómo se distribuyen los campeones según los roles principales del juego (Top, Jungle, Mid, ADC, Support). Para facilitar la interpretación, se dividieron en cuatro segmentos.  
 
-**Gráfica:**  
+**Gráficas:**  
 
-![download](https://github.com/user-attachments/assets/1347222c-0781-4251-a041-7453ccda3fcc)
+![image](https://github.com/user-attachments/assets/8816a8a7-f3a7-4bc2-bc5b-53b92cb18c12)
 
-![download](https://github.com/user-attachments/assets/a96c2704-6687-4316-a264-42bb6a606561)
 
-![download](https://github.com/user-attachments/assets/c2bc2f19-6518-4cdb-a957-e23861f41589)
+![image](https://github.com/user-attachments/assets/70a6d811-11a4-4d3f-9619-82daf312517a)
 
-![download](https://github.com/user-attachments/assets/2ff2e401-c1a0-4246-8065-484cd07e603d)
+
+![image](https://github.com/user-attachments/assets/316e160f-bf87-4824-ab57-4050981d1f8e)
+
+
+![image](https://github.com/user-attachments/assets/7af0f368-b552-411f-97d8-0c407ed1fdfc)
+
 
 
 **Conclusión:**  
-*(Espacio para destacar roles con mayor concentración o diversidad de campeones.)*
-
+Se ve claramente que hay predominancia de ciertos campeones frente a otros en ciertos roles, por ejemplo, Nautilus y Lulu en SUPPORT
 ---
 
 ## 2. Distribución de Campeones por Porcentaje de Victoria
 Se exploró el porcentaje de victoria de los campeones en el meta actual, segmentando los resultados en cuatro grupos para identificar campeones consistentes y outliers.  
 
-**Gráfica:**  
-![download](https://github.com/user-attachments/assets/34c175e1-8d02-4ab3-a2ae-13a21f211481)
+Las victorias están distribuidas en un 50% victorias y derrotas dada la naturaleza del juego ( 5 vs 5)
 
-![download](https://github.com/user-attachments/assets/3ff98c89-692f-4b21-8ddc-ac114f32c1f6)
-
-![download](https://github.com/user-attachments/assets/9f760b60-40c2-4fca-b367-aa6ecd61cdf4)
-
-![download](https://github.com/user-attachments/assets/313598f0-8303-487b-ae89-fcb1a7c800cf)
+![image](https://github.com/user-attachments/assets/18975ec1-444b-41cc-9bf6-2c1941dea0b0)
 
 
+**Gráficas:**  
 
+![image](https://github.com/user-attachments/assets/5d5ecab4-caaa-47e4-bc70-632a557ffc2d)
+
+
+![image](https://github.com/user-attachments/assets/a6adb82e-3ba6-4e10-a2c7-72acbb412d63)
+
+
+![image](https://github.com/user-attachments/assets/e047be2e-dc85-4a5f-91f6-6164eee2e963)
+
+
+![image](https://github.com/user-attachments/assets/bc74ba10-9acc-4955-b3f5-601ca4aff6f9)
 
 
 
 **Conclusión:**  
-*(Espacio para resaltar campeones meta-dominantes y aquellos con bajo rendimiento.)*
+Hay ciertos campeones que pese a tener una cantidad mayor de partidas jugadas su porcentaje de victorias es muy bajo(por ejemplo Lux, Caitlyn o Galio)
+y otros que pasa lo contrario ( Warwick o Briar)
 
 ---
 
-## 3. Top 20 Campeones con Más Porcentaje de Victoria
-Se identificaron los campeones más efectivos en términos de porcentaje de victorias.  
+## 3. Top 20 Campeones con Más Porcentaje de Victoria con un número mínimo de partidas jugadas
+Se identificaron los campeones más efectivos en términos de porcentaje de victorias con un mínimo de 150 partidas jugadas.  
 
 **Tabla:**  
 
-![image](https://github.com/user-attachments/assets/9201eae5-123d-4b9e-ae21-3368fcae5ed9)
+![image](https://github.com/user-attachments/assets/4beeafba-5554-49bc-a32f-f25f9016ccad)
+
 
 
 **Conclusión:**  
-*(Espacio para mencionar tendencias o recomendaciones basadas en este ranking.)*
+Estos 20 personajes parecen ser los más favorecidos por el metajuego actual
 
 ---
 
-## 4. Distribución de la Duración de las Partidas
-El análisis de la duración de las partidas puede ayudar a identificar si el meta actual favorece juegos largos o rápidos.  
+## 4. Distribución de diferentes métricas de las partidas
+Hemos seleccionado diferentes métricas dentro de las partidas para ver cuáles influyen más en las victorias.
 
-**Gráfica:**  
+**Gráficas:**  
+Oro ganado:
 
-![download](https://github.com/user-attachments/assets/7d4b0099-0a00-489a-8f6a-632eac90e819)
+![image](https://github.com/user-attachments/assets/38cb1f52-9399-46cd-94fc-07f91fc2f0a7)
+
+![image](https://github.com/user-attachments/assets/7b5db672-2305-47c6-b8a8-1da0e96e4286)
 
 
-**Conclusión:**  
-*(Espacio para incluir observaciones como duración promedio y posibles implicaciones para el draft.)*
+Al conseguir más oro, los jugadores obtienen más poder, lo que facilita la victoria.
+Sin embargo, la cantidad de oro ganado está muy determinada por la duración de la partida, ya que en partidas más largas se va a ganar más dinero que en las cortas, eso hace que la distribución de oro ganado sea similar a la de la duración de las partidas.
+
+Duración de partidas:
+
+![image](https://github.com/user-attachments/assets/bdc3e0cf-f216-49b8-9e32-dfa914eec7bd)
+
+
+![image](https://github.com/user-attachments/assets/1f05e460-3415-4df5-b1ce-8506bd9fdd00)
+
+La mayor cantidad de victorias están tienen una duración de entre 23 y 31 minutos, y hay una cantidad muy alta de partidas de 15 minutos, lo que nos ha dado la idea de estudiar las partidas cortas y largas por separado para analizar el metajuego.
+
+KDA:
+
+El **KDA** (Kill/Death/Assist) es una métrica comúnmente utilizada en juegos como *League of Legends* para medir el rendimiento de un jugador. Se calcula de la siguiente manera:
+
+
+KDA = (Asesinatos + Asistencias) / Muertes
+
+- **Asesinatos**: Número de enemigos eliminados por el jugador.
+- **Asistencias**: Número de eliminaciones en las que el jugador participó directamente.
+- **Muertes**: Número de veces que el jugador fue eliminado por el enemigo.
+
+El KDA es útil para evaluar la contribución general de un jugador al equipo, ya que combina tanto el impacto ofensivo como defensivo.
+
+Añadimos una columna de KDA para cada jugador para analizarlo más adelante:
+
+![image](https://github.com/user-attachments/assets/cfa03a9f-0160-45a0-9b8b-1237c9a5116b)
+
+Sacamos una gráfica con los 10 jugadores con más KDA promedio:
+
+![image](https://github.com/user-attachments/assets/934e978f-9a28-4404-9576-798f44c0d011)
+
+Y también una gráfica con los 10 jugadores con mejor KDA segmentados por el rol dentro de una partida:
+
+![image](https://github.com/user-attachments/assets/bcaa5a23-ef98-4e65-a243-fa9176b14587)
+
+Si quisieramos fichar a jugadores únicamente por su desempeño individual, aquí tendríamos candidatos para cada rol.
 
 ---
 
-## 5. Top 10 Jugadores con Mejor KDA por Rol
-Este análisis identifica a los jugadores más consistentes en términos de KDA, segmentado por roles.  
+## 5. Estudio de los objetivos de las partidas
+Hemos hecho un estudio de los primeros objetivos más relevantes de la partida para ver su importancia en las victorias.
+ Primer Barón Nashor:
 
-**Gráfica:**  
+![image](https://github.com/user-attachments/assets/88a36aed-03fb-4d78-aed9-b28904f2b93e)
 
-![download](https://github.com/user-attachments/assets/61584bbe-c1fe-42b9-ab4e-ed832801c750)
+Primer Dragón:
+
+![image](https://github.com/user-attachments/assets/1839d7ed-f885-4a46-bb97-82e5ef7a7563)
+
+Primer Inhibidor:
+
+![image](https://github.com/user-attachments/assets/f939a3ee-77ef-420e-a499-280e3f87c534)
+
+Vemos que los tres objetivos tienen peso, siendo el inhibidor el que más.
 
 
-**Conclusión:**  
-*(Espacio para destacar patrones o jugadores excepcionales en su rol.)*
-
-## 6. TODO: porcentaje de victorias por objetivos(primer dragon, baron, torre...) 
 
 
