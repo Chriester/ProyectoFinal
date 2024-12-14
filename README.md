@@ -303,6 +303,20 @@ Duración de partidas:
 
 La mayor cantidad de victorias están tienen una duración de entre 23 y 31 minutos, y hay una cantidad muy alta de partidas de 15 minutos, lo que nos ha dado la idea de estudiar las partidas cortas y largas por separado para analizar el metajuego.
 
+Estudio de tasas de victoria y popularidad entre partidas cortas y largas:
+
+![image](https://github.com/user-attachments/assets/12cd4b0a-01a6-4239-b6ef-74e917715cce)
+
+
+![image](https://github.com/user-attachments/assets/63d5d390-c01c-43cc-9042-34d33c96fe6f)
+
+Con estos gráficos se pueden destacar que hay campeones que funcionan mejor en partidas cortas y largas.
+Dependiendo del estilo de juego del equipo, puede ser recomendable que utilicen ciertos campeones, por ejemplo:
+- Si el equipo suele acabar las partidas muy rápido o tiene un estilo agresivo, se beneficiaría de empezar a jugar o continuar jugando campeones como Ryze Kaisa o Vi
+- Si el equipo suele tener partidas más largas o tiene un estilo conservador, se beneficiaría de campeones como Miss Fortune o Chogath
+- Si el equipo tiene partidas equilibradas, campeones como Ashe o Nami pueden ser recomendables para el equipo.
+
+
 KDA:
 
 El **KDA** (Kill/Death/Assist) es una métrica comúnmente utilizada en juegos como *League of Legends* para medir el rendimiento de un jugador. Se calcula de la siguiente manera:
@@ -328,7 +342,7 @@ Y también una gráfica con los 10 jugadores con mejor KDA segmentados por el ro
 
 ![image](https://github.com/user-attachments/assets/bcaa5a23-ef98-4e65-a243-fa9176b14587)
 
-Si quisieramos fichar a jugadores únicamente por su desempeño individual, aquí tendríamos candidatos para cada rol.
+Si quisieramos fichar a jugadores únicamente por su desempeño individual, aquí tendríamos posibles candidatos para cada rol, aunque aquí no se tienen en cuenta la cantidad de partidas jugadas, más adelante se realizará un análisis más exhaustivo para esto.
 
 ---
 
@@ -347,6 +361,72 @@ Primer Inhibidor:
 ![image](https://github.com/user-attachments/assets/f939a3ee-77ef-420e-a499-280e3f87c534)
 
 Vemos que los tres objetivos tienen peso, siendo el inhibidor el que más.
+
+
+# Análisis Avanzados
+
+## Estudio de correlación
+Seleccionamos las variables más relevantes para el modelo e hicimos un estudio de correlación entre estas variables y la variable a predecir, win.
+
+![image](https://github.com/user-attachments/assets/567d686c-40b1-42c6-b7ea-e4d1520a43d4)
+
+Hay ciertas variables con mucha correlación entre ellas que confirman lo que hemos visto anteriormente en el EDA; por ejemplo, el oro y la duración de las partidas está muy relacionado, ya que a más dura una partida más oro se puede conseguir.
+Sin embargo, nos centramos en las correlaciones entre win y las demás, y vemos que hay cierta linealidad clara entre los primeros objetivos y el oro con la victoria.
+Como el champion_win_rate tiene una correlación tan baja y realmente no hay motivos claros a parte para mantenerla, decidimos no añadirla al modelo para las predicciones, y nos quedamos las demás variables presentes.
+
+## Cohortes temporales avanzados
+En este estudio vamos a intentar encontrar los jugadores que mejor reaccionan a las derrotas, ya que todos los jugadores que analizamos en este estudio son challenger, y eso ya debería asegurar un mínimo de calidad de desempeño, queremos ver qué jugadores son consistentes en seguir jugando y entrenando pese a enfrentarse a una derrota. Utilizamos los  50 jugadores con más KDA que tengan al menos 10 partidas jugadas.
+
+Primero vemos una distribución de las partidas jugadas por fecha
+
+![image](https://github.com/user-attachments/assets/621d8bee-721a-48bf-96d4-51bdd6ff70ef)
+
+Vemos también las partidas jugadas cada día de la semana por cada jugador 
+
+![image](https://github.com/user-attachments/assets/a334ff0c-2fbc-4aa8-b466-9efb8fe21981)
+
+Un promedio de partidas por día para cada jugador
+
+![download](https://github.com/user-attachments/assets/a3d7eb18-525c-4dda-8370-dbc85f01e218)
+
+Y las franjas horarias en las que suelen jugar
+
+![image](https://github.com/user-attachments/assets/9bab551f-a28e-4f31-81a7-bd5de8d11f5a)
+
+Creamos cohortes diarios en base a la fecha de su primera derrota
+
+![image](https://github.com/user-attachments/assets/557688dd-888f-4d4f-bd51-461db5c4506d)
+
+Calculamos las tasas de retención y abandono de las cohortes
+
+![download](https://github.com/user-attachments/assets/de17fb1e-e880-4572-b51d-6b9cbafe5c2d)
+
+![image](https://github.com/user-attachments/assets/84f8585e-f781-429d-ba98-43a516ed39e1)
+
+Y calculamos la elasticidad de la retención
+
+![image](https://github.com/user-attachments/assets/e231af1a-ea03-4bcc-8ea3-4d492f7e1d5b)
+
+Con el gráfico, podemos sacar que las cohortes que tienen un valor de elasticidad por debajo de 1 son los jugadores a los que menos les ha afectado la primera derrota, así que son buenos candidatos a fichar.
+Para tener aún un mejor juicio a la hora de contratar, sacamos una gráfica donde se puedan ver los jugadores de estas cohortes con sus KDA y tasas de victoria promedios, así podemos visualizar a los mejores posibles fichajes ordenados por WINRATE
+
+![image](https://github.com/user-attachments/assets/0d6e422d-ee05-43f4-ab74-48d8fbffc785)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
