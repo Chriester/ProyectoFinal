@@ -414,7 +414,77 @@ Para tener aún un mejor juicio a la hora de contratar, sacamos una gráfica don
 
 
 
+# Modelos
+El objetivo de los modelos es predecir el resultado de una partida. Victoria o Derrota.
+Para conseguirlo, hemos utilizado tres modelos para compararlos y seleccionar el más adecuado:
+## RandomForest
 
+  seleccionamos las variables que vamos a utilizar en el modelo.
+  
+  ![image](https://github.com/user-attachments/assets/d113d06b-ae83-4c84-ad23-cb82824b3c02)
+
+  Dividimos en prueba y entrenamiento
+
+  ![image](https://github.com/user-attachments/assets/aae22369-9ba3-48d0-8617-da05dca77371)
+
+  Buscamos hiperparámetros y volvemos a entrenarlo con los hiperparámetros encontrados
+
+  ![image](https://github.com/user-attachments/assets/3837c1f2-400e-448f-8176-1c75138c6147)
+
+  ![image](https://github.com/user-attachments/assets/10adcbb3-da5a-4c35-a9bf-00ad5f211622)
+
+  Ejecutamos validaciónes cruzadas para un rango de K y graficamos los desempeños
+
+  ![image](https://github.com/user-attachments/assets/785eceae-25d3-48db-bde3-2ac18a8aa5b7)
+
+  ![image](https://github.com/user-attachments/assets/0af7fb6a-12f0-45e8-8a34-42235610f279)
+
+  decidimos utilizar k=5 
+
+  ![image](https://github.com/user-attachments/assets/31216860-dc80-46f1-a5e0-1b771f8827de)
+
+  Entrenamos en el conjunto de prueba
+  ![image](https://github.com/user-attachments/assets/9f9e661a-1820-430d-ba7c-5b903ea185a6)
+
+  Ajustamos pesos para intentar equilibrar los falsos negativos
+  
+  ![image](https://github.com/user-attachments/assets/a578aa86-1a49-4a72-9700-a45b3163771a)
+
+  El desempeño mejora, pero aún así intentamos ajustar el umbral de decisión para afinarlo más
+  
+  ![image](https://github.com/user-attachments/assets/7427de46-5ed4-47f6-a493-945fb4e6d86a)
+
+  Matriz de confusión graficada
+
+  ![image](https://github.com/user-attachments/assets/119f7961-f5ea-4597-bcd2-f01d7228692e)
+
+  Curva de aprendizaje
+  
+  ![image](https://github.com/user-attachments/assets/42142282-8e1b-4020-bf63-64d29d7f4675)
+
+  Curva de ROC, AUC = 0.93
+
+  ![image](https://github.com/user-attachments/assets/66cbbbea-5b5a-49cc-b3f4-bc3d67b80fa9)
+
+
+  
+
+  
+
+
+  
+
+  
+
+
+  
+
+
+
+
+
+
+  
 
 
 
