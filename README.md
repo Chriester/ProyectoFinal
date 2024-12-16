@@ -612,9 +612,6 @@ Entonces primero hemos hecho una nueva matriz de correlación con las caracterí
 
 ![image](https://github.com/user-attachments/assets/56d14806-26f2-467c-807c-0f762de93205)
 
-Para la selección del mejor hiperparámetro del modelo se ha utilizado la técnica de Búsqueda en Cuadrícula
-![image](https://github.com/user-attachments/assets/e68d8601-3556-47c1-bb5b-b3d69168ee58)
-
 ![image](https://github.com/user-attachments/assets/85cea782-456d-4ef4-8a4e-11130022b1c9)
 
 # Gráfico de la distribución de las predicciones de tiempo jugado en mes de Diciembre
