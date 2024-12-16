@@ -1,5 +1,6 @@
 # ProyectoFinal
 Link de descarga del CSV - https://drive.google.com/drive/folders/1FXgSRHyGBuxQpl1SZumY4BMkiF5_t73K?usp=drive_link (120mb~)
+Link Backlog del proyecto - https://github.com/users/Chriester/projects/1/views/1
 # Desglose del Proyecto
 
 ## 1. Objetivos Principales:
