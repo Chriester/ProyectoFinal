@@ -320,9 +320,6 @@ Dependiendo del estilo de juego del equipo, puede ser recomendable que utilicen 
 ![image](https://github.com/user-attachments/assets/f565170b-c586-412d-a777-40bf32f3b36a)
 
 
-
-
-
 KDA:
 
 El **KDA** (Kill/Death/Assist) es una métrica comúnmente utilizada en juegos como *League of Legends* para medir el rendimiento de un jugador. Se calcula de la siguiente manera:
@@ -367,6 +364,63 @@ Primer Inhibidor:
 ![image](https://github.com/user-attachments/assets/f939a3ee-77ef-420e-a499-280e3f87c534)
 
 Vemos que los tres objetivos tienen peso, siendo el inhibidor el que más.
+
+
+## 6. Distribución de Victorias
+
+A través de un mapa de calor, se observa las tasas de victorias dependiendo del día de la semana y las horas.
+
+El heatmap tiene como objetivo identificar los días y horarios con mayores probabilidades de victoria para challengers. Esto permite optimizar las sesiones de juego y estrategias competitivas al poder detectar horarios menos competitivos, identificar patrones de rendimiento que pueden influir en la toma de decisiones para entrenamientos y también maximizar rendimiento y eficiencia al competir con otros challenguer competitivos.
+
+![image](https://github.com/user-attachments/assets/8a1666fb-094f-45f6-9ace-bea92c01dcb1)
+
+Se observa que:
+- Los lunes y miércoles presentan un desempeño más irregular, con altibajos en las tasas de victoria durante las diferentes horas del día.
+- Los sábados y domingos tienen porcentajes de victoria más constantes, sobretodo en horas nocturnas y de la tarde, aunque no hay picos tan extremos.
+
+# Análisis de la relación entre la selección de campeones y la tasa de victoria según el día.
+
+Este heatmap ayuda a identificar los tops 10 campeones más efectivos por día. Se ha filtrado los campeones que tienen mayores tasas de victoria en días específicos. 
+
+![image](https://github.com/user-attachments/assets/8600aaee-9812-4ddf-b660-a0c381e5186c)
+
+Podemos observar que Kayle es la que tiene mayor tasa de victoria en días laborales, mientras que el fin de semana son los campeones Kayle y Kled con mayor tasa de victoria.
+Esto podría deberse a que los jugadores que los seleccionan son más experimentados o porque hay menos competencia contra ciertos estilos de juego en esos días.
+
+## 7. Distribución de partidas
+
+En el siguiente mapa de calor, se distribuye el numero de partidas por día de la semana y horas.
+
+El heatmap podemos observar que el sábado y domingo son los días con mayor cantidad de partidas. Donde las horas pico son entre la tarde y la noche, siendo las 21:00 del sábado el punto con más partidas.
+
+Claramente hay menos partidas en las madrugas, desde las 2:00 a 8:00 de la mañana, las actividades caen a lo largo de toda la semana, especialmente en los días laborales como martes y miércoles.
+
+Y en días laborables, el número de partidas va incrementando gradualmente desde 10:00 y alcanza su punto máximo entre 17:00 y 22:00. Sobretodo, destaca el viernes.
+
+![image](https://github.com/user-attachments/assets/f333118a-1ec4-4835-bf5a-299ab0accab2)
+
+Esta tribución ayuda a comprender patrones de juego, donde se ha observado que los fines de semana están más dedicados al juego competitivo y en las madrugadas con actividad casi inexistente.
+
+## 8. Top 10 mejores jugadores y el total de minutos que han jugado
+
+El siguiente grafico muestra a los 10 mejores jugadores (con base en su mayor KDA) junto con el total de minutos jugados.
+
+![image](https://github.com/user-attachments/assets/325dd383-334f-4e77-ab70-7cb8c1ce85bc)
+
+Observamos que el jugador "Fleshyy" destaca con 659 minutos jugados, una cantidad superior al resto. Esto podría sugerir una alta dedicación y consistencia en el juego.
+
+Este gráfico es una orientación general, que nos permite detectar si un mayor tiempo jugado se asocia directamente con un mejor rendimiento (KDA).
+Además ayuda a identificar jugadores dedicados y consistentes que podrían servir para reclutar o ser modelo para otros. También ayuda a facilitar la selección de jugadores clave para torneos o equipos competitivos basados en desempeño y compromiso.
+
+![image](https://github.com/user-attachments/assets/aeb802cf-a016-4c28-b481-ffff5c7c77c2)
+
+El boxplot nos muestra la distribución del tiempo jugado (en minutos) por día de la semana.
+Esto nos ayuda a identificar los días con mayor o menos actividad, ya que hay días específicos donde los challengers acumulan más tiempo de juego
+
+En el boxplot observamos que los fines de semana, sobretodo el domingo, hay una mayor variabilidad y máximos más altos en el tiempo jugado, lo cual indica que algunos jugadores dedican varios minutos el domingo. Los días laborales tienen distribuciones más consistentes y medianas similares, alrededor de 25 minutos, aunque el viernes muestra una ligera disminución de minutos jugados. 
+El domingo es el que destaca como el día con el mayor rango y valores atípicos, porque los jugadores tienen más tiempo libre para dedicar al juego o otros motivos externos.
+
+![image](https://github.com/user-attachments/assets/55fb8a90-deaa-4c55-bc3c-fac575ac1a71) ![image](https://github.com/user-attachments/assets/ef723999-1fd2-4829-9b34-fcaa16ce2d35)
 
 
 # Análisis Avanzados
@@ -525,6 +579,44 @@ Para conseguirlo, hemos utilizado tres modelos para compararlos y seleccionar el
   ![image](https://github.com/user-attachments/assets/7f47b27d-12ba-46f4-8253-5ce3c3bc72b4)
 
   
+
+## Modelo de Regresión Polinómica
+
+El objetivo es crear un modelo que nos ayude a predecir el tiempo total de juego diario que jugarán los Challenger en el mes de Diciembre. Entonces primero tenemos que ver cuál serían las caracteristicas que tenemos que seleccionar, y cuál sería la variable objetivo, y ver si están correlacionadas. Anteriormente hemos visto una matriz de correlación general, lo que nos ha dado una idea de qué características seleccionar.
+Entonces primero hemos hecho una nueva matriz de correlación con las características seleccionadas.
+
+![image](https://github.com/user-attachments/assets/56d14806-26f2-467c-807c-0f762de93205)
+
+![image](https://github.com/user-attachments/assets/85cea782-456d-4ef4-8a4e-11130022b1c9)
+
+# Gráfico de la distribución de las predicciones de tiempo jugado en mes de Diciembre
+
+![image](https://github.com/user-attachments/assets/a0a7150d-60ab-47d9-af2b-a1e832f96abc)
+
+El histograma muestra la frecuencia con la que los jugadores tienen un tiempo de juego predicho dentro de ciertos rangos. Cada jugador puede contribuir múltiples veces a un mismo rango si juega varios días con tiempos cercanos (ya que la columna de tiempo de minutos jugado es float), lo que puede aumentar la frecuencia en esos intervalos.
+
+![image](https://github.com/user-attachments/assets/4988d788-b24b-491a-82db-87d9e6166769)
+
+El gráfico de barras generado muestra las predicciones de tiempo jugado para cada Challenger durante el mes de diciembre. En el eje X, son los nombres de los jugadores (summoner_name), y en el eje Y, el tiempo jugado predicho en minutos. 
+Este análisis nos ayuda a visualizar cómo se distribuye el tiempo jugado entre los Challenger y compararlos.
+El objetivo es para dar una visión clara y rápida del tiempo estimado de juego para cada jugador, lo cual nos ayudará a evaluar y prever el posible rendimiento de los jugadores en el mes de diciembre.
+
+![image](https://github.com/user-attachments/assets/3a971633-ffa8-4b1b-8ee2-cfb037b7ae47)
+
+![image](https://github.com/user-attachments/assets/5fa0fbda-12c4-4ac0-ab5b-7994f87ddff0)
+
+![image](https://github.com/user-attachments/assets/10af908c-8841-40b2-ab24-3970d1ea2f03)
+
+- En RMSE nos indica una desviación de alrededor de 3 minutos en promedio.
+- R² nos indica si el modelo captura la relación entre las características y el tiempo jugado. En este caso un 69% en entrenamiento, 58% en prueba. 
+
+
+# Validación cruzada:
+![image](https://github.com/user-attachments/assets/4e2c5686-0c2a-4f52-82d4-e1fa1c2d51c9)
+
+El R² promedio es de 0.61, nos indica que el modelo es capaz de explicar aproximadamente el 61% de la variabilidad en los datos.
+Mientras que en RMSE promedio de 3.48, indicándonos que la desviación promedio entre las predicciones y los valores reales es de aproximadamente 3.48 minutos.
+
 
 
 
