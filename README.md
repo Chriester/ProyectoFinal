@@ -612,6 +612,9 @@ Entonces primero hemos hecho una nueva matriz de correlación con las caracterí
 
 ![image](https://github.com/user-attachments/assets/56d14806-26f2-467c-807c-0f762de93205)
 
+Para la selección del mejor hiperparámetro del modelo se ha utilizado la técnica de Búsqueda en Cuadrícula
+![image](https://github.com/user-attachments/assets/e68d8601-3556-47c1-bb5b-b3d69168ee58)
+
 ![image](https://github.com/user-attachments/assets/85cea782-456d-4ef4-8a4e-11130022b1c9)
 
 # Gráfico de la distribución de las predicciones de tiempo jugado en mes de Diciembre
@@ -630,11 +633,10 @@ El objetivo es para dar una visión clara y rápida del tiempo estimado de juego
 
 ![image](https://github.com/user-attachments/assets/5fa0fbda-12c4-4ac0-ab5b-7994f87ddff0)
 
-![image](https://github.com/user-attachments/assets/10af908c-8841-40b2-ab24-3970d1ea2f03)
-
 - En RMSE nos indica una desviación de alrededor de 3 minutos en promedio.
 - R² nos indica si el modelo captura la relación entre las características y el tiempo jugado. En este caso un 69% en entrenamiento, 58% en prueba. 
 
+![image](https://github.com/user-attachments/assets/10af908c-8841-40b2-ab24-3970d1ea2f03)
 
 # Validación cruzada:
 ![image](https://github.com/user-attachments/assets/4e2c5686-0c2a-4f52-82d4-e1fa1c2d51c9)
