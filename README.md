@@ -317,6 +317,12 @@ Dependiendo del estilo de juego del equipo, puede ser recomendable que utilicen 
 - Si el equipo tiene partidas equilibradas, campeones como Ashe o Nami pueden ser recomendables para el equipo.
 
 
+![image](https://github.com/user-attachments/assets/f565170b-c586-412d-a777-40bf32f3b36a)
+
+
+
+
+
 KDA:
 
 El **KDA** (Kill/Death/Assist) es una métrica comúnmente utilizada en juegos como *League of Legends* para medir el rendimiento de un jugador. Se calcula de la siguiente manera:
@@ -373,6 +379,17 @@ Seleccionamos las variables más relevantes para el modelo e hicimos un estudio 
 Hay ciertas variables con mucha correlación entre ellas que confirman lo que hemos visto anteriormente en el EDA; por ejemplo, el oro y la duración de las partidas está muy relacionado, ya que a más dura una partida más oro se puede conseguir.
 Sin embargo, nos centramos en las correlaciones entre win y las demás, y vemos que hay cierta linealidad clara entre los primeros objetivos y el oro con la victoria.
 Como el champion_win_rate tiene una correlación tan baja y realmente no hay motivos claros a parte para mantenerla, decidimos no añadirla al modelo para las predicciones, y nos quedamos las demás variables presentes.
+
+Como anteriormente, también vemos las diferencias de matrices de correlación de partidas largas y cortas:
+Cortas:
+
+![image](https://github.com/user-attachments/assets/612a4fbb-2fa1-49d5-a374-391c606c4b01)
+
+Largas:
+
+![image](https://github.com/user-attachments/assets/32ca462a-39d3-41e4-8ec7-eb49ea4a3a0f)
+
+
 
 ## Cohortes temporales avanzados
 En este estudio vamos a intentar encontrar los jugadores que mejor reaccionan a las derrotas, ya que todos los jugadores que analizamos en este estudio son challenger, y eso ya debería asegurar un mínimo de calidad de desempeño, queremos ver qué jugadores son consistentes en seguir jugando y entrenando pese a enfrentarse a una derrota. Utilizamos los  50 jugadores con más KDA que tengan al menos 10 partidas jugadas.
