@@ -422,6 +422,30 @@ El domingo es el que destaca como el día con el mayor rango y valores atípicos
 
 ![image](https://github.com/user-attachments/assets/55fb8a90-deaa-4c55-bc3c-fac575ac1a71) ![image](https://github.com/user-attachments/assets/ef723999-1fd2-4829-9b34-fcaa16ce2d35)
 
+## Análisis Temporal
+El objetivo de este análisis es identificar posibles patrones de comportamiento en los jugadores challengers según el día de la semana/mes. Entonces se ha examinado métricas como el número de partidas jugadas diariamente, así como la distribución entre días laborales y los fines de semana. Como se ha mencionado, estos análisis ayudara a resolver dudas como por ejemplo si los jugadores tienden a jugar más durante los fines de semana o su comportamiento no tiene relacion con los días, sino otras variables externas.
+A través de gráficos y segmentaciones, este análisis nos ayuda a fijarnos cómo varía la actividad de los jugadores a lo largo de la semana, brindándonos información clave para comprender los hábitos de juego y sus momentos de mayor participación.
+
+Recordemos que los Challenger son diferentes de los jugadores casuales, ya que su enfoque está más orientado al entrenamiento constante y la mejora del rendimiento en lugar de jugar únicamente por ocio.
+
+En el primer gráfico el numero de partidas por día de la semana. Se observa que los días laborales, el numero de partidas es menos que el fin de semana, pero sugiere que los Challengers mantienen un ritmo regular de partidas de manera creciente.
+Mientras que el fin de semana, están el mayor número de partidas, siendo el domingo más activo. En general, puede indicar varios factores no solo porque el fin de semana haya menos restricciones de tiempo, sino puede ser por un mayor numero de jugadores competitivos que decidan jugar ese día, también puede influir eventos, etc.
+
+![image](https://github.com/user-attachments/assets/5e42bf26-6a94-490e-be34-eae5c4d31693)
+
+![image](https://github.com/user-attachments/assets/c8bb6911-2c93-428e-9128-9c6b32363b74)
+
+En el segundo gráfico se estudia el número de partidas jugadas diariamente por los jugadores Challenger.
+Se observa picos de actividad en fechas específicas que están vinculados a fines de semana o puede ser también por eventos competitivos importantes.
+También se observa una caída temporal entre el 2 y el 5 de diciembre que coinciden en los días laborales, seguida de un fuerte repunte, lo que tal vez podría sugerir descansos o circunstancias externas.
+
+![image](https://github.com/user-attachments/assets/e7fc8627-d885-42ce-8352-28dfa2c9c364)
+
+![image](https://github.com/user-attachments/assets/74754894-5196-4cab-a6a5-5071ca79784d)
+
+
+En conclusión, los Challenger tiene mayor numero de partidas los fines de semana. Aunque esto también depende de cada jugador, ya que cada jugador aprovecha sus días libres o estratégicos para intensificar su rendimiento.
+
 
 # Análisis Avanzados
 
